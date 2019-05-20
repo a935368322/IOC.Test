@@ -11,8 +11,15 @@ namespace IOC.Test.Controllers
     {
         private IUserService userService;
         private IRoleService roleService;
+
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            base.OnActionExecuted(filterContext);
+        }
         public HomeController(IUserService userService,IRoleService roleService)
         {
+
+
             this.userService = userService;
             this.roleService = roleService;
         }

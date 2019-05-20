@@ -12,6 +12,17 @@ namespace IOC.Factory
 {
     public class RoleService : IRoleService
     {
+        private string param { get; set; }
+
+        public RoleService()
+        {
+
+        }
+        public RoleService(string param)
+        {
+            this.param = param;
+
+        }
         public IEnumerable<project_Role> GetRoleList()
         {
             //具体的实现

@@ -9,6 +9,7 @@ using System.Web.Routing;
 
 using Autofac;
 using Autofac.Integration.Mvc;
+using IOC.Interface;
 
 namespace IOC.Test
 {
@@ -37,10 +38,18 @@ namespace IOC.Test
 
             //告诉autofac框架注册数据仓储层所在程序集中的所有类的对象实例(数据操作层)
             Assembly respAss = Assembly.Load("IOC.Factory");
+            var respAssTypes = respAss.GetTypes();
             //创建respAss中的所有类的instance以此类的实现接口存储
-            builder.RegisterTypes(respAss.GetTypes()).AsImplementedInterfaces();
+            builder.RegisterTypes(respAssTypes).AsImplementedInterfaces();
+
+            //注册带参数的接口实例
+           // builder.RegisterType(respAssTypes.FirstOrDefault(x => x.Name.Contains("RoleService")))
+            // .As<IRoleService>().InstancePerLifetimeScope().WithParameter("param", "adonis");
+
             //创建一个Autofac的容器
             var container = builder.Build();
+
+ 
             //将MVC的控制器对象实例 交由autofac来创建
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
