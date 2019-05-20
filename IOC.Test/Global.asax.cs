@@ -43,8 +43,8 @@ namespace IOC.Test
             builder.RegisterTypes(respAssTypes).AsImplementedInterfaces();
 
             //注册带参数的接口实例
-           // builder.RegisterType(respAssTypes.FirstOrDefault(x => x.Name.Contains("RoleService")))
-            // .As<IRoleService>().InstancePerLifetimeScope().WithParameter("param", "adonis");
+            builder.RegisterType(respAssTypes.FirstOrDefault(x => x.Name.Contains("RoleService")))
+             .As<IRoleService>().InstancePerLifetimeScope().WithParameter("param", "test");
 
             //创建一个Autofac的容器
             var container = builder.Build();

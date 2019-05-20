@@ -14,10 +14,6 @@ namespace IOC.Factory
     {
         private string param { get; set; }
 
-        public RoleService()
-        {
-
-        }
         public RoleService(string param)
         {
             this.param = param;
