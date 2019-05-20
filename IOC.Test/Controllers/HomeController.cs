@@ -10,13 +10,16 @@ namespace IOC.Test.Controllers
     public class HomeController : Controller
     {
         private IUserService userService;
-        public HomeController(IUserService userService)
+        private IRoleService roleService;
+        public HomeController(IUserService userService,IRoleService roleService)
         {
             this.userService = userService;
+            this.roleService = roleService;
         }
         public ActionResult Index()
         {
-            var list = userService.GetUsersList();
+            var usersList = userService.GetUsersList();
+            var roleList = roleService.GetRoleList();
             return View();
         }
 
